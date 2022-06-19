@@ -6,7 +6,14 @@ import ReactPlayer from 'react-player'
 
 const MoreInformation = () => {
     const [ data1 ,setData1] = useState([]);
-   
+    const [time, setTime] = useState(new Date());
+    useEffect(() => {
+        let TimeId = setInterval(() => setTime(new Date()), 1000);
+        return () => {
+         clearInterval(TimeId);
+        };
+        });
+        
     const params = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
 var id=searchParams.get("id");
@@ -23,14 +30,22 @@ const getData1 = async() => {
     var str = JSON.stringify(data1);
     var JsonArray = JSON.parse(str);
     let navigate = useNavigate();
+
+
     
     return(
         <body>
 <div class="container-fluid bg-1 text-center">
+<div className='position-absolute top-0 end-0' style={{backgroundColor:"black"}}><b> the time is </b>  {
+           time.toLocaleTimeString() 
+    } 
+    </div>
   <h2 class="margin">{JsonArray.name}</h2>
   <img src="bird.png" class="img-fluid"  /> 
   <h3>{JsonArray.date_utc}</h3>
+   
 </div>
+
 <div class="container-fluid bg-2 text-center">
   <h3 class="margin">Details</h3>
   <h4>{JsonArray.details} </h4>
@@ -39,7 +54,6 @@ const getData1 = async() => {
 <div class='player'>
     <ReactPlayer url={JSON.stringify(data1.links)} controls={true}/>
     </div>
-
     <button className = 'btn btn-primary btn-lg' style={{margin:'20'}} onClick={() =>
     {
         navigate('/');

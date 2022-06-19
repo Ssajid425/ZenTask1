@@ -1,6 +1,6 @@
 #cards_landscape_wrap-2{
   text-align: center;
-  background: #f7f7f7;
+  background-color: #2EB62C;
 
 }
 #cards_landscape_wrap-2 .container{
@@ -217,4 +217,9 @@
   .col-10 {width: 83.33%;}
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
+}
+#container-fluid bg-1 text-center.text-center{
+  position: relative;
+  top: -16px;
+  right: -706px;
 }
